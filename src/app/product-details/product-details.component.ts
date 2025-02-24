@@ -12,18 +12,19 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductDetailsComponent {
   product: ProductDetails | null = null;
+  
  
   
   constructor(private _ActivatedRoute: ActivatedRoute, private _HttpClient: HttpClient) { }
+
+  _ProductsService = inject(ProductsService);
   ngOnInit(): void {
-    const productId = +this._ActivatedRoute.snapshot.paramMap.get('id')!;
-    this._HttpClient.get<ProductDetails>(`https://fakestoreapi.com/products/${productId}`).subscribe(
-      data => {
-        this.product = data;
-      },
-      error => {
-        console.error('Error fetching product detail', error);
-      }
-    );
+    
+    
+
+    const id = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
+    this._ProductsService.getProductById(id).subscribe((data) => {
+      this.product = data;
+    });
   }
 }
