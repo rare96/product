@@ -14,7 +14,7 @@ export class ProductsService {
   }
 
   getProductById(id: number): Observable<any> {
-    return this._HttpClient.get<any>(`https://fakestoreapi.com/products/${id}`);
+    return this._HttpClient.get(`https://fakestoreapi.com/products/${id}`);
   }
  
 }

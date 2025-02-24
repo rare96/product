@@ -23,8 +23,8 @@ export class ProductDetailsComponent {
     
 
     const id = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
-    this._ProductsService.getProductById(id).subscribe((data) => {
-      this.product = data;
+    this._ProductsService.getProductById(id).subscribe((res) => {
+      this.product = res;
     });
   }
 }
