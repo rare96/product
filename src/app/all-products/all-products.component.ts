@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Products } from '../interfaces/products';
 import { ProductsService } from '../services/products.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-products',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.scss'
 })
@@ -26,9 +26,4 @@ export class AllProductsComponent {
     })
    
   }
-
-  goToProductDetail(productId: number): void {
-    this._Router.navigate([`/products/${productId}`]);
-  }
-
 }

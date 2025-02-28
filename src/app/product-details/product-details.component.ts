@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetails } from '../interfaces/product-details';
 import { ProductsService } from '../services/products.service';
+import { Products } from '../interfaces/products';
 
 @Component({
   selector: 'app-product-details',
@@ -13,18 +13,27 @@ import { ProductsService } from '../services/products.service';
 export class ProductDetailsComponent {
   product: ProductDetails | null = null;
   
- 
   
-  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpClient: HttpClient) { }
+  productDetails !: Products;
+  
+  constructor(private _ActivatedRoute: ActivatedRoute) { }
 
   _ProductsService = inject(ProductsService);
   ngOnInit(): void {
     
-    
+    let productId = this._ActivatedRoute.snapshot.params?.['id'];
+    this._ProductsService.getProductById(productId).subscribe({
+      next:(res)=>{
+        this.productDetails = res;
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      },
+    })
+   
+  
+}
 
-    const id = Number(this._ActivatedRoute.snapshot.paramMap.get('id'));
-    this._ProductsService.getProductById(id).subscribe((res) => {
-      this.product = res;
-    });
-  }
+
 }

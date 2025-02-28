@@ -16,7 +16,7 @@
                     <p class="mt-2 text-xl font-semibold text-blue-500">${{ product.price }}</p>
 
                     <!-- Button -->
-                    <button (click)="goToProductDetail(product.id)" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                    <button [routerLink]="['/products',product.id]" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
                         View Details
                     </button>
                 </div>
@@ -26,3 +26,6 @@
 
     </div>
 </div>
+
+
+
